@@ -1,4 +1,4 @@
-import * as mongoose from "mongoose";
+import mongoose from "mongoose";
 
 // TODO: Try to find which type is app variable
 export function initDatabase(PORT: number, URI: string, app: any) {
