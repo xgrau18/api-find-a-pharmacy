@@ -7,6 +7,9 @@ import { initDatabase } from "./connection";
 // * Import config file
 import { config } from "./config/config";
 
+// * Import routes file
+import auth from './routes/auth';
+
 // * Petition Debugger
 import morgan from 'morgan';
 
@@ -20,6 +23,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 // * Routes
+app.use("/auth", auth);
 
 
 
