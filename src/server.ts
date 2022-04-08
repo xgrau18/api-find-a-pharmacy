@@ -18,6 +18,10 @@ import { verifyToken } from './middlewares/authJwt'
 app.use(express.json());
 app.use(morgan('dev'));
 
+/*
+*  TODO list:
+*   - Solve problem related with @ts-ignore
+* */
 
 // * Testing endpoint
 app.get("/", verifyToken, (req: Request, res: Response) => {
@@ -26,7 +30,6 @@ app.get("/", verifyToken, (req: Request, res: Response) => {
 
 // * Routes
 app.use("/auth", auth);
-
 
 
 // * Database and start server
