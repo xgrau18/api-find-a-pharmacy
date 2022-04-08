@@ -21,7 +21,7 @@ import { verifyToken } from './middlewares/authJwt'
 
 // * Testing endpoint
 app.get("/", verifyToken, (req: Request, res: Response) => {
-    res.status(200).send("Funciono");
+    res.status(200).send("I'm working!");
 });
 
 // * Routes
