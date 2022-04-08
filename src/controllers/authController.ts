@@ -21,7 +21,6 @@ export async function signup(req: Request, res: Response) {
         })
     }
 
-    // TODO: Missing refresh token and access token creation
     newUser.save((err, doc) => {
 
         if (err) {
@@ -29,7 +28,7 @@ export async function signup(req: Request, res: Response) {
         }
 
         return res.status(200).send({
-            message: "Successfully signup"
+            message: "Successfully sign up, please sign in"
         })
 
     });

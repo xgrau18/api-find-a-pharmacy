@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
+import { Express } from "express";
 
-// TODO: Try to find which type is app variable
-export function initDatabase(PORT: number, URI: string, app: any) {
+export function initDatabase(PORT: number, URI: string, app: Express) {
 
     mongoose.connect(URI);
 
