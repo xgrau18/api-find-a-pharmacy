@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
-import User from "../models/User";
+import { sign } from 'jsonwebtoken';
+import User from '../models/User';
+import { auth_config } from '../config/auth-config';
+import {refreshToken} from '../services/authService';
 
 export async function signup(req: Request, res: Response) {
 
@@ -50,10 +53,45 @@ export async function signin(req: Request, res: Response) {
             return res.status(409).send( { message: "Credentials not valid" } )
         }
 
-        return res.status(200).send({ message: "Successfully logged in"});
+        let token = sign({ id: dbUser.id }, auth_config.secret, {
+            expiresIn: auth_config.jwtExpiration
+        });
 
-    } else {
-        return res.status(409).send( { message: "Credentials not valid" } )
+        let _refreshToken = await refreshToken(dbUser);
+
+        return res.status(200).send({
+            message: "Successfully logged in",
+            id: dbUser.id,
+            email: dbUser.email,
+            accessToken: token,
+            refreshToken: _refreshToken
+        });
+
     }
+
+    return res.status(409).send( { message: "Credentials not valid" } )
+
+}
+
+export async function refreshtoken(req: Request, res: Response) {
+
+    const authUser = new User({
+        email: req.body.email,
+        password: req.body.password
+    });
+
+    const dbUser = await User.findOne({ email: authUser.email });
+
+    if (dbUser) {
+
+        // * Validate password correct
+        if (dbUser.password !== authUser.password) {
+            return res.status(409).send( { message: "Credentials not valid" } )
+        }
+
+
+    }
+
+    return res.status(409).send( { message: "Credentials not valid" } )
 
 }
