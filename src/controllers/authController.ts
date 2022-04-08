@@ -80,25 +80,3 @@ export async function signin(req: Request, res: Response) {
     return res.status(409).send( { message: "Credentials not valid" } )
 
 }
-
-export async function refreshtoken(req: Request, res: Response) {
-
-    const authUser = new User({
-        email: req.body.email,
-        password: req.body.password
-    });
-
-    const dbUser = await User.findOne({ email: authUser.email });
-
-    if (dbUser) {
-
-        // * Validate password correct
-        if (dbUser.password !== authUser.password) {
-            return res.status(409).send( { message: "Credentials not valid" } )
-        }
-
-    }
-
-    return res.status(409).send( { message: "Credentials not valid" } )
-
-}

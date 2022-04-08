@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 // * Controllers
-import { signin, signup, refreshtoken } from "../controllers/authController";
+import { signin, signup } from "../controllers/authController";
 
 // * Middlewares
 import { validateUserSchema } from '../middlewares/validateUserSchema';

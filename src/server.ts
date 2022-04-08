@@ -14,10 +14,10 @@ import auth from './routes/auth';
 import morgan from 'morgan';
 
 // * Middlewares
+import { verifyToken } from './middlewares/authJwt'
 app.use(express.json());
 app.use(morgan('dev'));
 
-import { verifyToken } from './middlewares/authJwt'
 
 // * Testing endpoint
 app.get("/", verifyToken, (req: Request, res: Response) => {
