@@ -17,8 +17,10 @@ import morgan from 'morgan';
 app.use(express.json());
 app.use(morgan('dev'));
 
+import { verifyToken } from './middlewares/authJwt'
+
 // * Testing endpoint
-app.get("/", (req: Request, res: Response) => {
+app.get("/", verifyToken, (req: Request, res: Response) => {
     res.status(200).send("Funciono");
 });
 
