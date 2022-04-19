@@ -36,7 +36,7 @@ app.get("/", verifyToken, (req: Request, res: Response) => {
 // * Routes
 app.use("/auth", auth);
 
-app.use("/",locations);
+app.use("/locations", locations);
 
 
 // * Database and start server
