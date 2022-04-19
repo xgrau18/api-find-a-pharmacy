@@ -19,19 +19,24 @@ import locations from './routes/locations';
 
 
 // * Middlewares
+import { verifyToken } from './middlewares/authJwt'
 app.use(express.json());
 app.use(morgan('dev'));
 
+/*
+*  TODO list:
+*   - Solve problem related with @ts-ignore
+* */
+
 // * Testing endpoint
-app.get("/", (req: Request, res: Response) => {
-    res.status(200).send("Funciono");
+app.get("/", verifyToken, (req: Request, res: Response) => {
+    res.status(200).send("I'm working!");
 });
 
 // * Routes
 app.use("/auth", auth);
 
 app.use("/",locations);
-
 
 
 // * Database and start server

@@ -10,7 +10,7 @@ export interface RefreshToken extends Document {
 }
 
 const RefreshTokenSchema: Schema = new Schema({
-    email: { type: String, required: true, unique: true},
+    token: { type: String, required: true, unique: true},
     user: { type: JSON, required: true},
     expiryDate: { type: Date, required: true}
 })
