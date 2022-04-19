@@ -1,4 +1,5 @@
 import express, { Request, Response} from 'express';
+import {Router} from 'express';
 export const app = express();
 
 // * Connection file
@@ -12,6 +13,10 @@ import auth from './routes/auth';
 
 // * Petition Debugger
 import morgan from 'morgan';
+import router from './routes/auth';
+import locations from './routes/locations';
+
+
 
 // * Middlewares
 app.use(express.json());
@@ -25,7 +30,13 @@ app.get("/", (req: Request, res: Response) => {
 // * Routes
 app.use("/auth", auth);
 
+app.use("/",locations);
+
 
 
 // * Database and start server
 initDatabase(config.PORT, config.URI, app);
+
+//Routes
+
+
