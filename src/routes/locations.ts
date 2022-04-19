@@ -1,14 +1,12 @@
 import express from 'express';
-import { resolve } from 'path';
-import { app } from '../server';
-
-import { mataro_ph } from "../controllers/locationsController";
 
 const router = express.Router();
 
-//app.use('/mataro',router);
 // * Import controller
+import { getFeatures } from "../controllers/locationController";
 
-router.get("/mataro",mataro_ph);
+router.get('/:location', getFeatures);
+
+
 
 export default router;
