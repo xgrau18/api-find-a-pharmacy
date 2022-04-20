@@ -1,4 +1,4 @@
-import express, {Request, Response} from 'express';
+import express from 'express';
 
 const router = express.Router();
 
@@ -9,6 +9,8 @@ import { getAllFeatures, getFeatures } from "../controllers/locationController";
 router.get('/all', getAllFeatures);
 
 // * Endpoint used to get all the features from one location
+
 router.get('/:location', getFeatures);
+
 
 export default router;

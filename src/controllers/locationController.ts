@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Feature from "../models/Feature";
 import { arrayToGeoJSON } from "../services/locationService";
+const feature = require("../models/modelJson");
 
 export function getFeatures(req: Request, res: Response) {
 
