@@ -9,28 +9,22 @@ import { config } from "./config/config";
 
 // * Import routes file
 import auth from './routes/auth';
+import locations from './routes/locations';
 
 // * Petition Debugger
 import morgan from 'morgan';
-import router from './routes/auth';
-import locations from './routes/locations';
 
-// * Allow cors petitions
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// * Cors policy
+import cors from 'cors'
+app.use(cors({
+    exposedHeaders: ['x-access-token']
+}));
 
 // * Middlewares
 import { verifyToken } from './middlewares/authJwt'
 app.use(express.json());
 app.use(morgan('dev'));
 
-/*
-*  TODO list:
-*   - Solve problem related with @ts-ignore
-* */
 
 // * Testing endpoint
 app.get("/", verifyToken, (req: Request, res: Response) => {
@@ -40,7 +34,7 @@ app.get("/", verifyToken, (req: Request, res: Response) => {
 // * Routes
 app.use("/auth", auth);
 
-app.use("/locations", locations);
+app.use("/locations", verifyToken, locations);
 
 
 // * Database and start server
