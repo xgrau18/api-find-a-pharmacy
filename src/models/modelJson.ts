@@ -3,15 +3,17 @@ const Schema = mongoose.Schema;
 
 const features = new Schema({
     
-    type:String,
-    geometry:{
-        type:String,
-        coordinates:Array
+    id: { type: Number, unique: true, required: true },
+    type: { type: String, required: true },
+    geometry: {
+        type: { type: String, required: true },
+        coordinates: { type: Array, required: true }
     },
-    properties:{
-        name:String,
-        postalCode:String,
-        tel:String
+    properties: {
+        name: { type: String, required: true },
+        postalCode: { type: String, required: true },
+        tel: { type: String, required: true },
+        location: { type: String, required: true }
     }
 });
 

@@ -19,15 +19,3 @@ export function getFeatures(req: Request, res: Response) {
 
 }
 
-
-
-
-
-
-
-export function mataro_ph(req: Request, res: Response) {
-   
-   const aux=feature.find({},);
-   res.send("hola");
-
-}
